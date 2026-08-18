@@ -30,12 +30,14 @@ class DesertTerrain : public Terrain{
     DesertTerrain();
     void describe() override;
 };
+
 class DesertNPC : public NPC{
     public:
     DesertNPC();
     void describe() override;
     void interact() override;
 };
+
 class DesertObstacle : public Obstacle{
     public:
     DesertObstacle();
@@ -49,12 +51,14 @@ class OceanTerrain : public Terrain{
     OceanTerrain();
     void describe() override;
 };
+
 class OceanNPC : public NPC{
     public:
     OceanNPC();
     void describe() override;
     void interact() override;
 };
+
 class OceanObstacle : public Obstacle{
     public:
     OceanObstacle();
@@ -68,12 +72,14 @@ class ForestTerrain : public Terrain{
     ForestTerrain();
     void describe() override;
 };
+
 class ForestNPC : public NPC{
     public:
     ForestNPC();
     void describe() override;
     void interact() override;
 };
+
 class ForestObstacle : public Obstacle{
     public:
     ForestObstacle();
@@ -87,12 +93,14 @@ class CityTerrain : public Terrain{
     CityTerrain();
     void describe() override;
 };
+
 class CityNPC : public NPC{
     public:
     CityNPC();
     void describe() override;
     void interact() override;
 };
+
 class CityObstacle : public Obstacle{
     public:
     CityObstacle();

@@ -21,6 +21,7 @@ class DesertFactory : public BiomeFactory{
     NPC* createNPC() override;
     Obstacle* createObstacle() override;
 };
+
 class OceanFactory  : public BiomeFactory{
 
     public:
@@ -28,6 +29,7 @@ class OceanFactory  : public BiomeFactory{
     NPC* createNPC() override;
     Obstacle* createObstacle() override;
 };
+
 class ForestFactory  : public BiomeFactory{
 
     public:
@@ -35,6 +37,7 @@ class ForestFactory  : public BiomeFactory{
     NPC* createNPC() override;
     Obstacle* createObstacle() override;
 };
+
 class CityFactory  : public BiomeFactory{
 
     public:

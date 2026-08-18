@@ -4,19 +4,23 @@
 PlaceDecorator::PlaceDecorator(Place* p) : wrapped(p){
 
     if(p == nullptr){
+
         std::cout << "Invalid Place" << std::endl;
     }
 }
 
 void PlaceDecorator::describe(){
+
     wrapped->describe();
 }
 
 std::string PlaceDecorator::getName(){
+
     return wrapped->getName();
 }
 
 PlaceDecorator::~PlaceDecorator(){
+
     delete wrapped;
 }
 
@@ -36,6 +40,7 @@ void WeatherFeature::describe(){
 TollFeature::TollFeature(Place* p, double fee) : PlaceDecorator(p), fee(fee){
 
     if(this->fee < 0){
+
         std::cout << "Invalid fee, defaulting to 0" << std::endl;
         this->fee = 0;
     }
@@ -52,6 +57,7 @@ void TollFeature::describe(){
 QuestFeature::QuestFeature(Place* p) : PlaceDecorator(p){}
 
 void QuestFeature::announceQuest(){
+    
     std::cout << "There are 4 new quests in this location" << std::endl;
 }
 
