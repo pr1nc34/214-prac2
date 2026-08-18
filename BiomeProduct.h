@@ -1,105 +1,103 @@
 #ifndef BIOMEPRODUCT_H
 #define BIOMEPRODUCT_H
 
-
 class Terrain{
 
     public:
-    virtual void describe() const = 0;
+    virtual void describe() = 0;
     virtual ~Terrain();
-
-
 };
-
 
 class NPC{
 
     public:
-    virtual void describe() const = 0;
-    virtual void interact() const = 0;
+    virtual void describe() = 0;
+    virtual void interact() = 0;
     virtual ~NPC();
-
 };
 
 class Obstacle{
 
     public:
-    virtual void describe() const = 0;
-    virtual void resolve() const = 0;
+    virtual void describe() = 0;
+    virtual void resolve() = 0;
     virtual ~Obstacle();
 };
 
 
-class DessertTerrain : public Terrain{
-
+class DesertTerrain : public Terrain{
     public:
-    DessertTerrain();
+    DesertTerrain();
+    void describe() override;
 };
-class DessertNPC : public NPC{
-    
+class DesertNPC : public NPC{
     public:
-    DessertNPC();
-
+    DesertNPC();
+    void describe() override;
+    void interact() override;
 };
-class DessertObstacle : public Obstacle{
-
+class DesertObstacle : public Obstacle{
     public:
-    DessertObstacle();
+    DesertObstacle();
+    void describe() override;
+    void resolve() override;
 };
 
 
 class OceanTerrain : public Terrain{
-
     public:
     OceanTerrain();
+    void describe() override;
 };
 class OceanNPC : public NPC{
-    
     public:
     OceanNPC();
-
+    void describe() override;
+    void interact() override;
 };
 class OceanObstacle : public Obstacle{
-
     public:
     OceanObstacle();
+    void describe() override;
+    void resolve() override;
 };
 
 
-class ForrestTerrain : public Terrain{
-
+class ForestTerrain : public Terrain{
     public:
-    ForrestTerrain();
+    ForestTerrain();
+    void describe() override;
 };
-class ForrestNPC : public NPC{
-    
+class ForestNPC : public NPC{
     public:
-    ForrestNPC();
-
+    ForestNPC();
+    void describe() override;
+    void interact() override;
 };
-class ForrestObstacle : public Obstacle{
-
+class ForestObstacle : public Obstacle{
     public:
-    ForrestObstacle();
+    ForestObstacle();
+    void describe() override;
+    void resolve() override;
 };
-
 
 
 class CityTerrain : public Terrain{
-
     public:
     CityTerrain();
+    void describe() override;
 };
 class CityNPC : public NPC{
-    
     public:
     CityNPC();
-
+    void describe() override;
+    void interact() override;
 };
 class CityObstacle : public Obstacle{
-
     public:
     CityObstacle();
+    void describe() override;
+    void resolve() override;
 };
 
 #endif

@@ -10,7 +10,7 @@ class Region : public Place{
     public:
     Region(std::string name);
     void add(Place* pl);
-    std::vector<Place*>& getChildren();
+    const std::vector<Place*>& getChildren() const;
     void describe() override;
     void describeChildren();
     std::string getName() override;

@@ -1,12 +1,6 @@
 #include "Place.h"
-
-
-void Place::add(Place* pl){
-
-    if(pl != nullptr){
-        return;
-    }
-
-}
-
+ 
+void Place::add(Place*){}
+ 
 Place::~Place(){}
+ 

@@ -1,5 +1,7 @@
-#include "Place.h"
+#ifndef LOCATION_H
+#define LOCATION_H
 
+#include "Place.h"
 
 class Location : public Place{
 
@@ -12,5 +14,6 @@ class Location : public Place{
     std::string getName() override;
     ~Location();
 
-
 };
+
+#endif

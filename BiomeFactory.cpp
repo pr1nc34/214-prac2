@@ -1,25 +1,47 @@
 #include "BiomeFactory.h"
 
+BiomeFactory::~BiomeFactory(){}
 
 //Desert
-Terrain* Desert::createTerrain() const{
-    
-    
+Terrain* DesertFactory::createTerrain(){
+    return new DesertTerrain();
 }
-NPC* Desert::createNPC() const{}
-Obstacle* Desert::createObstacle() const{}
+NPC* DesertFactory::createNPC(){
+    return new DesertNPC();
+}
+Obstacle* DesertFactory::createObstacle(){
+    return new DesertObstacle();
+}
 
 //Ocean
-Terrain* Ocean::createTerrain() const{}
-NPC* Ocean::createNPC() const{}
-Obstacle* Ocean::createObstacle() const{}
+Terrain* OceanFactory::createTerrain(){
+    return new OceanTerrain();
+}
+NPC* OceanFactory::createNPC(){
+    return new OceanNPC();
+}
+Obstacle* OceanFactory::createObstacle(){
+    return new OceanObstacle();
+}
 
-//Forrest
-Terrain* Forrest::createTerrain() const{}
-NPC* Forrest::createNPC() const{}
-Obstacle* Forrest::createObstacle() const{}
+//Forest
+Terrain* ForestFactory::createTerrain(){
+    return new ForestTerrain();
+}
+NPC* ForestFactory::createNPC(){
+    return new ForestNPC();
+}
+Obstacle* ForestFactory::createObstacle(){
+    return new ForestObstacle();
+}
 
 //City
-Terrain* City::createTerrain() const{}
-NPC* City::createNPC() const{}
-Obstacle* City::createObstacle() const{}
+Terrain* CityFactory::createTerrain(){
+    return new CityTerrain();
+}
+NPC* CityFactory::createNPC(){
+    return new CityNPC();
+}
+Obstacle* CityFactory::createObstacle(){
+    return new CityObstacle();
+}

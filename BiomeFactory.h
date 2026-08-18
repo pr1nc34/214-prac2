@@ -7,41 +7,40 @@ class BiomeFactory
 {
 
 public:
-    virtual Terrain* createTerrain() const = 0 ;
-    virtual NPC* createNPC() const = 0;
-    virtual Obstacle* createObstacle() const = 0;
+    virtual Terrain* createTerrain() = 0;
+    virtual NPC* createNPC() = 0;
+    virtual Obstacle* createObstacle() = 0;
+    virtual ~BiomeFactory();
 };
 
 
-class Desert : public BiomeFactory{
+class DesertFactory : public BiomeFactory{
 
     public:
-    Terrain* createTerrain() const override;
-    NPC* createNPC() const override;
-    Obstacle* createObstacle() const override;
+    Terrain* createTerrain() override;
+    NPC* createNPC() override;
+    Obstacle* createObstacle() override;
 };
-class Ocean  : public BiomeFactory{
+class OceanFactory  : public BiomeFactory{
 
     public:
-    Terrain* createTerrain() const override;
-    NPC* createNPC() const override;
-    Obstacle* createObstacle() const override;
+    Terrain* createTerrain() override;
+    NPC* createNPC() override;
+    Obstacle* createObstacle() override;
 };
-class Forrest  : public BiomeFactory{
+class ForestFactory  : public BiomeFactory{
 
     public:
-    Terrain* createTerrain() const override;
-    NPC* createNPC() const override;
-    Obstacle* createObstacle() const override;
+    Terrain* createTerrain() override;
+    NPC* createNPC() override;
+    Obstacle* createObstacle() override;
 };
-class City  : public BiomeFactory{
+class CityFactory  : public BiomeFactory{
 
     public:
-    Terrain* createTerrain() const override;
-    NPC* createNPC() const override;
-    Obstacle* createObstacle() const override;
+    Terrain* createTerrain() override;
+    NPC* createNPC() override;
+    Obstacle* createObstacle() override;
 };
-
-
 
 #endif

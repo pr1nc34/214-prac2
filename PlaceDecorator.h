@@ -5,12 +5,13 @@
 
 class PlaceDecorator : public Place
 {
-protected:
+    private:
     Place* wrapped;
-public:
+
+    public:
     PlaceDecorator(Place* p);
-    void describe();
-    std::string getName();
+    void describe() override;
+    std::string getName() override;
     ~PlaceDecorator();
 };
 
@@ -37,9 +38,6 @@ class TollFeature : public PlaceDecorator{
 
 class QuestFeature : public PlaceDecorator{
 
-    private:
-    std::string quest;
-
     public:
     QuestFeature(Place* p);
     void announceQuest();
@@ -47,9 +45,6 @@ class QuestFeature : public PlaceDecorator{
 };
 
 class ShrineFeature : public PlaceDecorator{
-
-    private:
-    std::string name;
 
     public:
     ShrineFeature(Place* p);
