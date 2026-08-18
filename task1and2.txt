@@ -1,0 +1,23 @@
+1.1 Movement(Traveller/MoveStrategy): labelled as Strategy when it should be State because Traveler stores modeCode:int and its move() delegates to MoveStrategy::doMove() which is a switch(modeCode) rather than polymorphic. The state of an object can be managed externally by modelling the state as an object. The consequence of this is that adding a new travel mode means editing and recompiling the switch.
+    
+
+    Routes(Trip/RouteState): Labelled as State when it should be Strategy because Trip stores routeType:string and plan() delegates to RouteState::getRoute(type) which is a switch(routeType) rather than polymorphic. The state of an object can be managed externally by modelling the state as an object. The consequence of this is that adding a new route type means editing and recompiling the switch.
+
+
+1.3 
+    1. Wrong pattern choice-no polymorphism in Movement
+    MoveStrategy::doMove() is a method containing switch(mode). There's no abstract interface and no concrete subclasses per mode. The state of an object can be managed externally by modelling the state as an object. The consequence of this is that adding a new travel mode means editing and recompiling the switch.
+    2. Wrong pattern choice-no polymorphism in Routes
+    RouteState::getRoute() is an if/else and not a set of ConcreteStrategy subclasses sharing an abstract interface. The consequence of this is that adding a new route type means editing and recompiling the if/else.
+    
+
+
+2.2 
+State (Movement)
+Participants: Traveller is the Context; TravelMode is the abstract State; OnFoot, Bicycle, and Car are the ConcreteStates.
+Key ownership decision: each TravelMode holds a protected back-reference to its Traveller (#traveller : Traveller*), and it is the concrete states themselves — not Traveller — that decide the next mode via getNextMode(). This follows the "Concrete States applying variable criteria" approach from Chapter 9.4.3.1 rather than having Traveller hard-code the transition rules. The trade-off is explicit in the notes: this raises coupling, because TravelMode now has to know about Traveller, but it buys Protected Variations — adding a fourth or fifth travel mode never requires editing Traveller, only adding one new subclass. Given that Task 2.3 requires new modes to slot in without existing classes changing, this was the only one of the three implementation options (Ch. 9.4.3.1: Context fixed criteria / Context variable criteria / Concrete-state variable criteria) that actually satisfies that requirement, so it wasn't really optional — it was dictated by the assignment's own extensibility demand.
+Traveller owns its current TravelMode* via composition and deletes it both on transition (inside changeMode()) and in its own destructor — this is what prevents the memory leak that the original int modeCode design didn't even have the machinery to cause or prevent, since it never allocated anything.
+Strategy (Routes)
+Participants: Trip is the Context; RouteStrategy is the abstract Strategy; ShortestRoute, FastestRoute, and ScenicRoute are the ConcreteStrategies.
+Key ownership decision: unlike TravelMode, RouteStrategy deliberately holds no back-reference to Trip. Chapter 8.4.4 flags this exact fork — pass data through parameters versus give the strategy a pointer back to its context — and recommends letting the data requirements decide. Since a route-finding algorithm only ever needs the map to compute a path and has no reason to call back into Trip afterward, findRoute(m: Map*) takes the map as a parameter instead. This keeps RouteStrategy genuinely stateless and swappable — any strategy can run against any map with zero coupling to a particular Trip instance — which is also precisely why 4.3 argues State and Strategy aren't interchangeable despite similar-looking diagrams: TravelMode needs the back-reference to drive its own transitions, RouteStrategy doesn't, because nothing about routing requires the strategy to reach back into its caller.
+Trip owns its current RouteStrategy* via composition, deleting the old strategy inside setStrategy() before assigning the new one, and again in its own destructor — same pattern as Traveller, applied to a case where the object being swapped is a pure algorithm rather than a stateful mode.
